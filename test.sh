@@ -40,7 +40,7 @@ metadata:
     app.kubernetes.io/name: nexclipper-kubernetes-agent
 stringData:
   username: ${USERNAME}
-  password: ${APITOKEN}
+  nexclipper-api-token: ${APITOKEN}
 ---
 apiVersion: v1
 kind: ConfigMap
