@@ -3,6 +3,10 @@
 for i in "$@"
 do
 case $i in
+        --platform=*)
+        PLATFORM="${i#*=}"
+        shift
+        ;;
         --instance-name=*)
         INSTANCENAME="${i#*=}"
         shift
@@ -18,9 +22,33 @@ case $i in
 esac
 done
 
+echo "PLATFORM          = ${PLATFORM}"
 echo "INSTANCENAME      = ${INSTANCENAME}"
 echo "APITOKEN          = ${APITOKEN}"
 echo "USERNAME          = ${USERNAME}"
+
+############
+# BAREMATAL
+############
+if [ $PLATFORM == "baremetal" ]
+then
+	echo "baremetal install"
+fi
+
+############
+# KUBERNETES
+############
+if [ $PLATFORM == "kubernetes" ]
+then
+
+VERSION=$(dpkg -l | grep kubectl | awk '{print $3}')
+
+if [ x$v == x ]
+then
+	echo "install kubectl"
+else
+	echo $v
+fi
 
 kubectl create ns nexclipper
 
@@ -77,3 +105,5 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 EOF
+
+fi
