@@ -43,12 +43,12 @@ then
 
 VERSION=$(dpkg -l | grep kubectl | awk '{print $3}')
 
-if [ x$v == x ]
+if [ -z "$VERSION" ]
 then
 	echo "install kubectl"
 else
-	echo $v
-fi
+
+echo "kubectl version : $VERSION"
 
 kubectl create ns nexclipper
 
@@ -105,5 +105,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 EOF
+fi
+
 
 fi
