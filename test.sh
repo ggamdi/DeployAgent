@@ -41,12 +41,10 @@ fi
 if [ $PLATFORM == "kubernetes" ]
 then
 
-VERSION=$(dpkg -l | grep kubectl | awk '{print $3}')
+VERSION=$(kubectl version --short | grep Server)
 
-if [ -z "$VERSION" ]
+if [[ $VERSION == *"Version"* ]]
 then
-	echo "install kubectl"
-else
 
 echo "kubectl version : $VERSION"
 
@@ -106,6 +104,10 @@ roleRef:
 ---
 EOF
 fi
+	
+else
+
+echo "install kubectl"
 
 
 fi
