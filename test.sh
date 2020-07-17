@@ -103,11 +103,11 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 EOF
-fi
 	
 else
 
 echo "install kubectl"
 
+fi
 
 fi
