@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: klevr-agent
+  namespace: nexclipper
+  labels:
+    k8s-app: klevr-agent
+spec:
+  selector:
+    matchLabels:
+      name: klevr-agent
+  template:
+    metadata:
+      labels:
+        name: klevr-agent
+    spec:
+      containers:
+      - image: klevr/klevr-agent:latest
+        name: klevr-agent
+        env:
+        - name: K_API_KEY
+          value: "wnskslxptmxmrPwjd123"
+        - name: K_PLATFORM
+          value: "linux_laptop"
+        - name: K_MANAGER_URL
+          value: "192.168.15.163:8090"
+        - name: K_ZONE_ID
+          value: "8282"
+        ports:
+        - containerPort: 8080
+          name: klevr-agent
