@@ -15,7 +15,7 @@ spec:
         name: klevr-agent
     spec:
       containers:
-      - image: klevr/klevr-agent:latest
+      - image: klevry/klevr-agent:latest
         name: klevr-agent
         env:
         - name: K_API_KEY
